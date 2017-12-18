@@ -1,0 +1,20 @@
+<div class="posts-container row">
+  <div class="col-md-6 col-md-offset-3">
+    <mat-card class="example-card" *ngFor="let item of items">
+      <mat-card-header>
+        <mat-card-title class="header" [innerHTML]="item.title.rendered"></mat-card-title>
+      </mat-card-header>
+      <div class="row">
+        <div class="col-xs-6 col-sm-4">
+          <p class="date">{{item.date.split('T')[0]}} </p>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+          <p (click)="readMore(item.id)" class="read-more">Read More </p>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+          <span class="glyphicon glyphicon-comment" aria-hidden="true">10</span>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

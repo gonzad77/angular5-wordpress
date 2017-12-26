@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from './post.service';
 
 
@@ -16,30 +16,29 @@ export class PostComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private postService: PostService
+    private postService: PostService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      var postId = params.id;
-      this.postService.getPost(postId)
-      .then( res => {
-        this.post = res;
-        this.postService.getAuthor(res.author)
-        .then(result => {
-          this.post.authorName = result.name;
+    this.route.data.subscribe(routeData => {
+     let data = routeData['data'];
+     if (data) {
+       this.post = data.post;
+       this.comments = data.comments
+       this.postService.getCategories(this.post.categories)
+       .then(categories => {
+         this.post.categoriesInfo = categories;
+       });
+       this.postService.getAuthor(this.post.author)
+       .then(result => {
+         this.post.authorName = result.name;
         })
-        this.postService.getCategories(res.categories)
-        .then(data => {
-          this.post.categoriesInfo = data;
-        })
-      })
-      this.postService.getComments(postId)
-      .then( res => {
-        this.comments = res;
-      })
-
-    })
+     }
+   })
   }
 
+  goToCategories(categoryId){
+    this.router.navigate(['/category/' + categoryId]);
+  }
 }

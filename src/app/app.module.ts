@@ -16,15 +16,21 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { HomeService } from './home/home.service';
+import { HomeResolver } from './home/home.resolver';
 import { PostService } from './post/post.service';
 import { PostComponent } from './post/post.component';
+import { PostResolver } from './post/post.resolver';
+import { CategoryComponent } from './category/category.component';
+import { CategoryResolver } from './category/category.resolver';
+import { CategoryService } from './category/category.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PostComponent
+    PostComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,7 @@ import { PostComponent } from './post/post.component';
     MatIconModule,
     MatToolbarModule
   ],
-  providers: [HomeService, PostService],
+  providers: [HomeService, PostService, CategoryService, HomeResolver, PostResolver, CategoryResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

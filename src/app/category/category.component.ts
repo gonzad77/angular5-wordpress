@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { HomeService } from './home.service';
+import { CategoryService } from './category.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class CategoryComponent implements OnInit {
 
   items: Array<any> = new Array<any>();
 
   constructor(
-    private homeService : HomeService,
+    private categoryService : CategoryService,
     private router: Router,
     private route: ActivatedRoute,
   ) { }

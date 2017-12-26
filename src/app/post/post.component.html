@@ -14,7 +14,7 @@
     </mat-card>
   </div>
   <div class="col-md-6 col-md-offset-3">
-    <button *ngFor="let category of post.categoriesInfo" class="btn btn-primary" type="button">
+    <button *ngFor="let category of post.categoriesInfo" (click)="goToCategories(category.id)" class="btn btn-primary" type="button">
       {{category.name}} <span class="badge"></span>
     </button>
   </div>
